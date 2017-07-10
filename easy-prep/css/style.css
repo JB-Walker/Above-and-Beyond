@@ -1,0 +1,12 @@
+* {
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+#card-display {
+  width:80vw;
+  height: calc(80vw * 0.67);
+  border: 2px solid black;
+
+}
