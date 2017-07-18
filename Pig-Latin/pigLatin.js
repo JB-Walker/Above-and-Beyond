@@ -10,7 +10,7 @@ function pigLatin (word) {
   }
 }
 
-// Tests
+// Tests  --- use 'npm test piglatin.js from this folder'
 
 const assert = require('assert');
 const readline = require('readline');
