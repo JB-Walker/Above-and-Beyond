@@ -15,33 +15,25 @@ function generateSolution () {
   board = [];
   solution = '';
   for (let i = 0; i < 4; i++) {
-    const randomIndex = getRandomInt(0, letters.length);
-    solution += letters[randomIndex];
+    solution += letters[Math.floor(Math.random() * letters.length)];
   }
 }
 
-function getRandomInt (min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
+// Ensure that every character in Guess appears in Letters. Returns T/F
 function validityOf (guess) {
-  // callback function
-  function validChar (element) {
-    element.isArray(letters);
-  }
-  // --------
-  if (guess.split('').every(validChar)) {
+  let guessArray = guess.split('');
+  if (guessArray.every(validChar)) {
     return true;
   }
   return false;
+  // required callback function
+  function validChar (element) {
+    element.isArray(letters);
+  }
 }
 
-function generateHint () {
-  // your code here
-  
+function generateHint (guess) {
 }
-
-
 
 function mastermind (guess) {
   guess = guess.trim().toLowerCase();
