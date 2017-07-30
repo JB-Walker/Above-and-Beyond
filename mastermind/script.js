@@ -10,7 +10,10 @@ function printBoard () {
   }
 }
 
+// "NEW GAME"
 function generateSolution () {
+  board = [];
+  solution = '';
   for (let i = 0; i < 4; i++) {
     const randomIndex = getRandomInt(0, letters.length);
     solution += letters[randomIndex];
@@ -21,13 +24,36 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function generateHint () {
-  // your code here
+function validityOf (guess) {
+  // callback function
+  function validChar (element) {
+    element.isArray(letters);
+  }
+  // --------
+  if (guess.split('').every(validChar)) {
+    return true;
+  }
+  return false;
 }
 
-function mastermind (guess) {
-  solution = 'abcd'; // Comment this out to generate a random solution
+function generateHint () {
   // your code here
+  
+}
+
+
+
+function mastermind (guess) {
+  guess = guess.trim().toLowerCase();
+  if (validityOf(guess)) {
+    board.pop(guess);
+    if (guess === solution) {
+      console.log('You guessed it!');
+    } else {
+      generateHint(guess);
+      printBoard();
+    }
+  }
 }
 
 // Tests
