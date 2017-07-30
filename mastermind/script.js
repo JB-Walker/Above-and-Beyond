@@ -2,6 +2,7 @@
 
 let board = [];
 let solution = '';
+let solutionLength = 4;
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
 function printBoard () {
@@ -10,35 +11,67 @@ function printBoard () {
   }
 }
 
-// "NEW GAME"
+// Initiates "NEW GAME"
 function generateSolution () {
   board = [];
   solution = '';
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < solutionLength; i++) {
     solution += letters[Math.floor(Math.random() * letters.length)];
   }
 }
 
-// Ensure that every character in Guess appears in Letters. Returns T/F
+// Ensure that every character in Guess appears in Letters and of the
+// appropriate character length. Returns T/F
 function validityOf (guess) {
-  let guessArray = guess.split('');
-  if (guessArray.every(validChar)) {
+  // guess = guess.split(''); Known to work. test next line
+  guess = Array.from(guess);
+  if (guess.every(charIsValid) && guess.length === solutionLength) {
     return true;
   }
   return false;
   // required callback function
-  function validChar (element) {
+  function charIsValid (element) {
     element.isArray(letters);
   }
 }
 
+// Compare guess:solution
+//         abcd  :  aabb
+//         Xbcd  :  Xabb
+//         XO--  :  XaXb
+//
+//
+
 function generateHint (guess) {
+  let guessCopy = guess.split('');
+  let solutionCopy = solution;
+  let inPosition = 0;
+  let outOfPosition = 0;
+  for (let i = 0; i < solutionLength; i++) {
+    if (guessCopy[i] === solutionCopy[i]) {
+      inPosition++;
+      solutionCopy[i] = null; // Set to a value that could not be in letters
+      guessCopy[i] = false; // Set to a value that could not be in letters and not be NULL
+    }
+  }
+  for (let i = 0; i < solutionLength; i++) {
+    if (guessCopy[i].findIndex  > -1) {
+
+  }
+
+
+
+
+
+
+
+
+
 }
 
 function mastermind (guess) {
   guess = guess.trim().toLowerCase();
   if (validityOf(guess)) {
-    board.pop(guess);
     if (guess === solution) {
       console.log('You guessed it!');
     } else {
@@ -67,6 +100,7 @@ function getPrompt () {
 
 if (typeof describe === 'function') {
   solution = 'abcd';
+
   describe('#mastermind()', () => {
     it('should register a guess and generate hints', () => {
       mastermind('aabb');
@@ -85,6 +119,7 @@ if (typeof describe === 'function') {
       assert.equal(generateHint('aabb'), '1-1');
     });
   });
+
 } else {
   generateSolution();
   getPrompt();
