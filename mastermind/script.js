@@ -77,6 +77,7 @@ function mastermind (guess) {
   if (isValid(guess)) {
     if (guess === solution) {
       console.log('You guessed it!');
+      document.getElementById('id2c').innerHTML = 'You guessed it!'; // !!!!!!!!!!!! DELETE !!!!!!!!!!!!!
     } else {
       board.push(guess + '  ::  ' + generateHint(guess));
       printBoard();
@@ -84,8 +85,20 @@ function mastermind (guess) {
   }
 }
 
-// Tests
+solution = 'abcd';
+mastermind('aabb');
+document.getElementById('id1c').innerHTML = board.length;
 
+mastermind(solution);
+
+generateHint('abdc');
+document.getElementById('id3b').innerHTML = board[0] + ' || ' + board[1];
+
+generateHint('aabb');
+document.getElementById('id4b').innerHTML = board[0] + ' || ' + board[1] + ' || ' + board[2];
+
+// Tests
+/*
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -126,3 +139,4 @@ if (typeof describe === 'function') {
   generateSolution();
   getPrompt();
 }
+*/
