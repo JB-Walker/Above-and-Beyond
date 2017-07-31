@@ -4,7 +4,8 @@ let board = [];
 let solution = '';
 let solutionLength = 4;
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-let nonLetter = '-'; // Must be different from all letters
+let nonSolutionChar = 'X'; // Must be different from all letters & nonGuessChar
+let nonGuessChar = 'Y'; // Must be different from all letters & nonSolutionChar
 
 function printBoard () {
   for (let i = 0; i < board.length; i++) {
@@ -36,46 +37,39 @@ function isValid (guess) {
   }
 }
 
-// Compare guess:solution
-//         abcd  :  aabb
-//         Xbcd  :  Xabb
-//         XO--  :  XaXb
-//
-//
-
 function generateHint (guess) {
   let guessArr = Array.from(guess);
-  let solutionArr = Array.from(solution);;
+  let solutionArr = Array.from(solution);
   let countInPosition = findInPosition();
   let countOutOfPosition = findOutOfPosition();
-  return countInPosition + "-" + countOutOfPosition;
+  return countInPosition + '-' + countOutOfPosition;
 
-  function findOutOfPosition () {
-    let numberFound = 0;
-    for (let i = 0; i < solutionLength; i++) {
-      if (.findIndex(guessPosition) > -1) {
-
-      }
-    }
-    return numberFound;
-    // callback function
-    function guessPosition (element) {
-      return element ===
-    }
-  }
-
-  function findInPosition() {
+  function findInPosition () {
     let numberFound = 0;
     for (let i = 0; i < solutionLength; i++) {
       if (guessArr[i] === solutionArr[i]) {
         numberFound++;
-        solutionArr[i] = nonLetter;
-        guessArr[i] = nonLetter + nonLetter; // Must be different from solutionArr[i]
+        solutionArr[i] = nonSolutionChar;
+        guessArr[i] = nonGuessChar;
       }
     }
     return numberFound;
   }
 
+  function findOutOfPosition () {
+    let numberFound = 0;
+    for (let i = 0; i < solutionLength; i++) {
+      if (solutionArr.findIndex(xxx, guessArr[i]) > -1) {
+        numberFound++;
+        solutionArr[i] = nonSolutionChar;
+      }
+    }
+    return numberFound;
+    // callback function
+    function xxx (element) {
+      return element === this;
+    }
+  }
 }
 
 function mastermind (guess) {
@@ -84,7 +78,7 @@ function mastermind (guess) {
     if (guess === solution) {
       console.log('You guessed it!');
     } else {
-      board.push(guess + " :: " + generateHint(guess));
+      board.push(guess + '  ::  ' + generateHint(guess));
       printBoard();
     }
   }
@@ -128,7 +122,6 @@ if (typeof describe === 'function') {
       assert.equal(generateHint('aabb'), '1-1');
     });
   });
-
 } else {
   generateSolution();
   getPrompt();
