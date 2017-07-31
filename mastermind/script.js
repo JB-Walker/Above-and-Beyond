@@ -22,6 +22,7 @@ function generateSolution () {
   }
 }
 
+/*
 // Ensure that every character in Guess appears in Letters and has the
 // appropriate character length. Returns T/F
 function isValid (guess) {
@@ -36,6 +37,7 @@ function isValid (guess) {
     element.isArray(letters);
   }
 }
+*/
 
 function generateHint (guess) {
   let guessArr = Array.from(guess);
@@ -59,30 +61,32 @@ function generateHint (guess) {
   function findOutOfPosition () {
     let numberFound = 0;
     for (let i = 0; i < solutionLength; i++) {
-      if (solutionArr.findIndex(xxx, guessArr[i]) > -1) {
+      const index = solutionArr.findIndex(xxx);
+      if (index > -1) {
         numberFound++;
-        solutionArr[i] = nonSolutionChar;
+        solutionArr[index] = nonSolutionChar;
       }
     }
     return numberFound;
+
     // callback function
-    function xxx (element) {
-      return element === this;
+    function xxx (currentValue, i) {
+      return currentValue === guessArr[i];
     }
   }
 }
 
 function mastermind (guess) {
   guess = guess.trim().toLowerCase();
-  if (isValid(guess)) {
-    if (guess === solution) {
-      console.log('You guessed it!');
-      document.getElementById('id2c').innerHTML = 'You guessed it!'; // !!!!!!!!!!!! DELETE !!!!!!!!!!!!!
-    } else {
-      board.push(guess + '  ::  ' + generateHint(guess));
-      printBoard();
-    }
+  // if (isValid(guess)) {
+  if (guess === solution) {
+    console.log('You guessed it!');
+    document.getElementById('id2c').innerHTML = 'You guessed it!'; // !!!!!!!!!!!! DELETE !!!!!!!!!!!!!
+  } else {
+    board.push(guess + '  ::  ' + generateHint(guess));
+    printBoard();
   }
+  // }
 }
 
 solution = 'abcd';
@@ -91,10 +95,10 @@ document.getElementById('id1c').innerHTML = board.length;
 
 mastermind(solution);
 
-generateHint('abdc');
+mastermind('abdc');
 document.getElementById('id3b').innerHTML = board[0] + ' || ' + board[1];
 
-generateHint('aabb');
+mastermind('aabb');
 document.getElementById('id4b').innerHTML = board[0] + ' || ' + board[1] + ' || ' + board[2];
 
 // Tests
