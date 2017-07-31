@@ -60,19 +60,16 @@ function generateHint (guess) {
 
   function findOutOfPosition () {
     let numberFound = 0;
-    for (let i = 0; i < solutionLength; i++) {
-      const index = solutionArr.findIndex(xxx);
-      if (index > -1) {
-        numberFound++;
-        solutionArr[index] = nonSolutionChar;
+    for (let gssIndex = 0; gssIndex < solutionLength; gssIndex++) {
+      for (let solIndex = 0; solIndex < solutionLength; solIndex++) {
+        if (guessArr[gssIndex] === solutionArr[solIndex]) {
+          numberFound++;
+          solutionArr[solIndex] = nonSolutionChar;
+          guessArr[gssIndex] = nonGuessChar;
+        }
       }
     }
     return numberFound;
-
-    // callback function
-    function xxx (currentValue, i) {
-      return currentValue === guessArr[i];
-    }
   }
 }
 
