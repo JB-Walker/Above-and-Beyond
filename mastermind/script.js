@@ -4,6 +4,7 @@ let board = [];
 let solution = '';
 let solutionLength = 4;
 let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+let nonLetter = '-'; // Must be different from all letters
 
 function printBoard () {
   for (let i = 0; i < board.length; i++) {
@@ -20,17 +21,17 @@ function generateSolution () {
   }
 }
 
-// Ensure that every character in Guess appears in Letters and of the
+// Ensure that every character in Guess appears in Letters and has the
 // appropriate character length. Returns T/F
-function validityOf (guess) {
+function isValid (guess) {
   // guess = guess.split(''); Known to work. test next line
-  guess = Array.from(guess);
-  if (guess.every(charIsValid) && guess.length === solutionLength) {
+  const guessArr = Array.from(guess);
+  if (guessArr.every(letterIsValid) && guess.length === solutionLength) {
     return true;
   }
   return false;
-  // required callback function
-  function charIsValid (element) {
+  // callback function
+  function letterIsValid (element) {
     element.isArray(letters);
   }
 }
@@ -43,39 +44,47 @@ function validityOf (guess) {
 //
 
 function generateHint (guess) {
-  let guessCopy = guess.split('');
-  let solutionCopy = solution;
-  let inPosition = 0;
-  let outOfPosition = 0;
-  for (let i = 0; i < solutionLength; i++) {
-    if (guessCopy[i] === solutionCopy[i]) {
-      inPosition++;
-      solutionCopy[i] = null; // Set to a value that could not be in letters
-      guessCopy[i] = false; // Set to a value that could not be in letters and not be NULL
+  let guessArr = Array.from(guess);
+  let solutionArr = Array.from(solution);;
+  let countInPosition = findInPosition();
+  let countOutOfPosition = findOutOfPosition();
+  return countInPosition + "-" + countOutOfPosition;
+
+  function findOutOfPosition () {
+    let numberFound = 0;
+    for (let i = 0; i < solutionLength; i++) {
+      if (.findIndex(guessPosition) > -1) {
+
+      }
+    }
+    return numberFound;
+    // callback function
+    function guessPosition (element) {
+      return element ===
     }
   }
-  for (let i = 0; i < solutionLength; i++) {
-    if (guessCopy[i].findIndex  > -1) {
 
+  function findInPosition() {
+    let numberFound = 0;
+    for (let i = 0; i < solutionLength; i++) {
+      if (guessArr[i] === solutionArr[i]) {
+        numberFound++;
+        solutionArr[i] = nonLetter;
+        guessArr[i] = nonLetter + nonLetter; // Must be different from solutionArr[i]
+      }
+    }
+    return numberFound;
   }
-
-
-
-
-
-
-
-
 
 }
 
 function mastermind (guess) {
   guess = guess.trim().toLowerCase();
-  if (validityOf(guess)) {
+  if (isValid(guess)) {
     if (guess === solution) {
       console.log('You guessed it!');
     } else {
-      generateHint(guess);
+      board.push(guess + " :: " + generateHint(guess));
       printBoard();
     }
   }
