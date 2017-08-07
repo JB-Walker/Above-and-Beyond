@@ -29,3 +29,11 @@ function getShortMessages (messages) {
   return messages.map(x => x.message).filter(y => y.length < 50);
 }
 module.exports = getShortMessages;
+
+function checkUsersValid(goodUsers) {
+  return function allUsersValid(submittedUsers) {
+    // SOLUTION GOES HERE
+  };
+}
+
+module.exports = checkUsersValid
