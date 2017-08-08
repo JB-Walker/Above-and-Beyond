@@ -30,10 +30,15 @@ function getShortMessages (messages) {
 }
 module.exports = getShortMessages;
 
-function checkUsersValid(goodUsers) {
-  return function allUsersValid(submittedUsers) {
-    // SOLUTION GOES HERE
+// Return a boolean test function that verifies that all submitted users are goodusers
+// Use nested callbacks
+function checkUsersValid (goodUsers) {
+  return function allUsersValid (submittedUsers) {
+    submittedUsers.every(isValidUser);
+
+    function isValidUser (element) {
+      return goodUsers.some(element);
+    }
   };
 }
-
-module.exports = checkUsersValid
+module.exports = checkUsersValid;
