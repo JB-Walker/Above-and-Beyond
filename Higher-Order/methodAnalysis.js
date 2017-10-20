@@ -34,11 +34,7 @@ module.exports = getShortMessages;
 // Use nested callbacks
 function checkUsersValid (goodUsers) {
   return function allUsersValid (submittedUsers) {
-    submittedUsers.every(isValidUser);
-
-    function isValidUser (element) {
-      return goodUsers.some(element);
-    }
+    return submittedUsers.every(e => goodUsers.some(a => a === e));
   };
 }
 module.exports = checkUsersValid;
