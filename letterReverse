@@ -4,9 +4,13 @@ function spinWords(originalString){
     // if (word.length < 5) {
     //  return word;
     //} else {
-      let letters = word.split();
+      let letters = word.split('');
+      console.log(letters);
       letters = letters.reverse();
-      return letters.join();   
+      console.log(letters);
+      letters = letters.join();
+      console.log(letters);
+      return letters;
     //}
   });
   const newString = spunWords.join(' ');
