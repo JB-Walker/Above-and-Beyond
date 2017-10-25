@@ -8,7 +8,7 @@ function spinWords(originalString){
       console.log(letters);
       letters = letters.reverse();
       console.log(letters);
-      letters = letters.join();
+      letters = letters.join('');
       console.log(letters);
       return letters;
     //}
