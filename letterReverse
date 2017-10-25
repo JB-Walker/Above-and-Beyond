@@ -4,15 +4,8 @@ function spinWords(originalString){
      if (word.length < 5) {
       return word;
     } else {
-      let letters = word.split('');
-      console.log(letters);
-      letters = letters.reverse();
-      console.log(letters);
-      letters = letters.join('');
-      console.log(letters);
-      return letters;
+      return word.split('').reverse().join('');
     }
   });
-  const newString = spunWords.join(' ');
-  return newString;
+  return spunWords.join(' ');
 }
