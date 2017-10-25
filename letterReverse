@@ -1,13 +1,13 @@
 function spinWords(originalString){
   const words = originalString.split(' ');
   const spunWords = words.map(word => {
-    if (word.length < 5) {
-      return word;
-    } else {
+    // if (word.length < 5) {
+    //  return word;
+    //} else {
       let letters = word.split();
       letters = letters.reverse();
       return letters.join();   
-    }
+    //}
   });
   const newString = spunWords.join(' ');
   return newString;
