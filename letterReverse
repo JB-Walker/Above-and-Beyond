@@ -1,9 +1,7 @@
 function spinWords(originalString){
-  const words = originalString.split(' ');
   //const words = originalString.split(' ');
   //let spunWords = words.map(word => {
-  let spunWords = words.map(word => {
-
+  let spunWords = originalString.split(' ').map(word => {
      if (word.length < 5) {
       return word;
     } else {
