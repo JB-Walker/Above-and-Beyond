@@ -1,9 +1,9 @@
 function spinWords(originalString){
   const words = originalString.split(' ');
   const spunWords = words.map(word => {
-    // if (word.length < 5) {
-    //  return word;
-    //} else {
+     if (word.length < 5) {
+      return word;
+    } else {
       let letters = word.split('');
       console.log(letters);
       letters = letters.reverse();
@@ -11,7 +11,7 @@ function spinWords(originalString){
       letters = letters.join('');
       console.log(letters);
       return letters;
-    //}
+    }
   });
   const newString = spunWords.join(' ');
   return newString;
