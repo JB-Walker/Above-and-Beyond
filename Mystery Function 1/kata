@@ -1,10 +1,11 @@
 function solved(str){
-  //if (str.length > 1) {
-  //  let newStr = str.split('').sort().join('').trim();
-    //let newStr = str.split('').reverse().join('');
-    //return newStr.substring(0, Math.floor(str.length / 2) - 1) + 
-    //  newStr.substring(Math.ceil(str.length / 2));
- // }
- // return '';
- return str;
+  let newStr = str;
+  if (str.length > 1) {
+    if (str.length % 2 === 1) {
+      newStr = str.substring(0, Math.floor(str.length / 2) - 1) + 
+        str.substring(Math.ceil(str.length / 2));
+      }
+    return newStr.split('').sort().join('').trim();
+  }
+ return '';
 }
